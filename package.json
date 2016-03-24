@@ -1,0 +1,23 @@
+{
+  "name": "fend-mobile-portfolio",
+  "version": "0.1.0",
+  "description": "Front End Nanodegree Mobile Portfolio Project",
+  "keywords": ["mobile", "portfolio"],
+  "repository" :{
+    "type": "git",
+    "url": "https://github.com/pinakshah/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-mkdir": "~0.1.2",
+    "grunt-contrib-htmlmin": "^1.1.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-csslint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-responsive-images": "^0.1.6"
+  }
+}
