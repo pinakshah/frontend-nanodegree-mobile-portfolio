@@ -3,17 +3,16 @@
  */
 
 module.exports = function(grunt) {
+  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
-  require('load-grunt-tasks')(grunt);
+  //require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     /* Clear out the dist directory if it exists */
     clean: {
-      dist: {
-        src: ['dist'],
-      },
+      src: ['dist']
     },
 
     /* Generate the dist directory if it is missing */
@@ -21,13 +20,56 @@ module.exports = function(grunt) {
       dist: {
         options: {
           create: ['dist']
-        },
-      },
+        }
+      }
     },
 
+    /** Copy images */
+    copy: {
+      images: {
+        files: [{
+          expand: true,
+          src: ['src/img/*'],
+          dest: 'dist/img/',
+          filter: 'isFile',
+          flatten: true
+        }]
+      },
+      printcss: {
+        files: [{
+          expand: true,
+          src: ['src/css/print.css'],
+          dest: 'dist/css/',
+          filter: 'isFile',
+          flatten: true
+        }]
+      }
+    },
+
+    responsive_images: {
+      indeximages: {
+        options: {
+          engine: 'gm',
+          sizes: [{
+            name: 'thumbnail',
+            rename: false,
+            width: 131,
+            height: 61,
+            aspectRatio: false,
+            quality: 60
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['pizzeria.jpg'],
+          cwd: 'src/views/images/',
+          dest: 'dist/views/images/'
+        }]
+      },
+    },
     /* Minify HTML */
     htmlmin: {
-      dist: {
+      indexhtml: {
         options: {
           removeComments: true,
           collapseWhitespace: true
@@ -41,33 +83,41 @@ module.exports = function(grunt) {
       }
     },
 
-    /* Minify JS */
-    uglify: {
-      dist: {
+    /** Minify CSS **/
+    cssmin: {
+      options: {
+        report: 'gzip'
+      },
+      indexcss: {
         files: [{
           expand: true,
-          cwd: 'src/js/',
-          src: ['**/*.js'],
-          dest: 'dist/js/',
-          ext: '.min.js'
+          cwd: 'src/css',
+          src: ['style.css','print.css'],
+          dest: 'dist/css/'
         }]
       }
     },
 
-    /** Minify CSS **/
-    cssmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'src/css/',
-          src: ['*.css', '!*.min.css'],
-          dest: 'dist/css/',
-          ext: '.min.css'
-        }]
+    uglify: {
+      options: {
+        report: 'gzip'
+      },
+      indexjs: {
+        files: {
+          'dist/js/perfmatters.js': ['src/js/perfmatters.js']
+        }
       }
-    }
+    },
   });
 
-  grunt.registerTask('default', ['clean', 'mkdir', 'htmlmin', 'uglify', 'cssmin']);
+  grunt.registerTask('default', [
+    'clean',
+    'mkdir',
+    'copy',
+    'responsive_images',
+    'htmlmin',
+    'cssmin',
+    'uglify'
+  ]);
 };
 
