@@ -83,6 +83,31 @@ module.exports = function(grunt) {
       }
     },
 
+    imagemin: {
+      indeximages: {
+        options: {
+          optimizationLevel: 7
+        },
+        files: [{
+          expand: true,
+          cwd: 'src/img/',
+          src: ['**/*.{png,jpg,jpeg,gif}'],
+          dest: 'dist/img/'
+        }]
+      },
+      viewimages: {
+        options: {
+          optimizationLevel: 7
+        },
+        files: [{
+          expand: true,
+          cwd: 'dist/views/images/',
+          src: ['**/*.{png,jpg,jpeg,gif}'],
+          dest: 'dist/views/images/'
+        }]
+      }
+    },
+
     /** Minify CSS **/
     cssmin: {
       options: {
@@ -116,6 +141,7 @@ module.exports = function(grunt) {
     'copy',
     'responsive_images',
     'htmlmin',
+    'imagemin',
     'cssmin',
     'uglify'
   ]);
