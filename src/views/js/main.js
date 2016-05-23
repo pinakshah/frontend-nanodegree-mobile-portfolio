@@ -438,6 +438,9 @@ var resizePizzas = function(size) {
         console.log("bug in sizeSwitcher");
     }
     var pizzas = document.querySelectorAll(".randomPizzaContainer");
+
+    // Optimization: Removed all the unnecessary calculation to calculate the
+    // width of the pizza and set width in the % based on the pizza size.
     for (var i = 0; i < pizzas.length; i++) {
       pizzas[i].style.width = newwidth + '%';
     }
@@ -483,14 +486,28 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
+// Optimization: Considering background pizzas which are visible in the screen
+// only.
+var rows = screen.height / 256;
+var cols = screen.width / 300;
+var no_of_pizzas = rows * cols;
+
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
+  // Optimization: Calculated scrollTop outside the loop as it is getting single
+  // value and calculated sin value based on reference example
+  var sine = Math.sin((document.body.scrollTop / 1250));
+  // Optimization: Replace querySelectorAll with getElementsByClassName
+  var items = document.getElementsByClassName('mover');
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  //Replaced items.length with the number of pizzas generated
+  for (var i = 0; i < no_of_pizzas; i++) {
+    // Calculated phase amount based on the reference example.
+    var phase = Math.sin(sine + (i % 5));
+    // Optimization: Added two transform property in style.css for optimizing
+    // updating layer.
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -509,9 +526,8 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < no_of_pizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

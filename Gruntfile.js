@@ -80,6 +80,18 @@ module.exports = function(grunt) {
           src: ['**/*.html'],
           dest: 'dist/'
         }]
+      },
+      pizzahtml: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'src/',
+          src: ['views/*.html'],
+          dest: 'dist/'
+        }]
       }
     },
 
@@ -101,8 +113,8 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'dist/views/images/',
-          src: ['**/*.{png,jpg,jpeg,gif}'],
+          cwd: 'src/views/images/',
+          src: ['pizza.png'],
           dest: 'dist/views/images/'
         }]
       }
@@ -120,6 +132,14 @@ module.exports = function(grunt) {
           src: ['style.css','print.css'],
           dest: 'dist/css/'
         }]
+      },
+      pizzacss: {
+        files: [{
+          expand: true,
+          cwd: 'src/views/css',
+          src: ['style.css','bootstrap-grid.css'],
+          dest: 'dist/views/css/'
+        }]
       }
     },
 
@@ -130,6 +150,11 @@ module.exports = function(grunt) {
       indexjs: {
         files: {
           'dist/js/perfmatters.js': ['src/js/perfmatters.js']
+        }
+      },
+      pizzajs: {
+        files: {
+          'dist/views/js/main.js': ['src/views/js/main.js']
         }
       }
     },
