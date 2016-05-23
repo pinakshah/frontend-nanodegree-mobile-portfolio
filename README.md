@@ -21,7 +21,7 @@ Some useful tips to help you get started:
 3. Install grunt modules by executing following command in console. It will install all the modules provided in the **package.json**
 
   ```bash
-  grunt install
+  npm install
   ```
 
 4. Execute following command to build the project. It will create the dist folder with all the optimized resources.
