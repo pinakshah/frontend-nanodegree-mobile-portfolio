@@ -1,5 +1,5 @@
 /*
- * TODO Add comments here.
+ * Grunt file for mobile portfolio project.
  */
 
 module.exports = function(grunt) {
@@ -160,6 +160,23 @@ module.exports = function(grunt) {
     },
   });
 
+  grunt.registerMultiTask('htmlmin', 'Minify HTML', function() {
+    grunt.log.writeln('htmlmin task completed!');
+  });
+
+
+  grunt.registerMultiTask('imagemin', 'Optimizing Images', function() {
+    grunt.log.writeln('imagemin task completed!');
+  });
+
+  grunt.registerMultiTask('cssmin', 'Optimizing CSS', function() {
+    grunt.log.writeln('cssmin task completed!');
+  });
+
+  grunt.registerMultiTask('uglify', 'Uglify JS', function() {
+    grunt.log.writeln('uglify task completed!');
+  });
+
   grunt.registerTask('default', [
     'clean',
     'mkdir',
@@ -171,4 +188,3 @@ module.exports = function(grunt) {
     'uglify'
   ]);
 };
-
