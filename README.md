@@ -4,7 +4,7 @@ This is mobile portfolio application which displays project portfolio.
 
 To get started, check out the repository, follow the instructions to build the source.
 
-`NOTE: Befor you getting started, make sure you have nodejs install on your system.`
+`NOTE: Before you getting started, make sure you have nodejs install on your system.`
 
 ### Getting started
 
@@ -13,7 +13,10 @@ To get started, check out the repository, follow the instructions to build the s
 Some useful tips to help you get started:
 
 1. Check out the repository
-2. Install grunt client if you have not installed it by executing following command in console.
+2. Download and Install GraphicsMagick from [here]. (http://www.graphicsmagick.org/download.html)
+
+  `NOTE: I have used here GraphicsMagick engine here while generating responsive images. You can use other engine like ImageMagick as well. You just need to change engine from "gm" to "im" for task - responsive_images in the package.json.`  
+3. Install grunt client if you have not installed it by executing following command in console.
 
   ```bash
   npm install -g grunt-cli
