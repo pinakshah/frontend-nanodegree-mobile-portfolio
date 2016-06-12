@@ -14,8 +14,15 @@ Some useful tips to help you get started:
 
 1. Check out the repository
 2. Download and Install GraphicsMagick from [here]. (http://www.graphicsmagick.org/download.html)
-
+  `If you're a Mac user, you can install by following command:
+    brew install GraphicsMagick
+  Alternatively, you can install by following commands:
+    $ sudo add-apt-repository ppa:dhor/myway
+    $ sudo apt-get update
+    $ sudo apt-get install graphicsmagick`
+  
   `NOTE: I have used here GraphicsMagick engine here while generating responsive images. You can use other engine like ImageMagick as well. You just need to change engine from "gm" to "im" for task - responsive_images in the package.json.`  
+  
 3. Install grunt client if you have not installed it by executing following command in console.
 
   ```bash
