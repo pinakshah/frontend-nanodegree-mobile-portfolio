@@ -437,7 +437,7 @@ var resizePizzas = function(size) {
       default:
         console.log("bug in sizeSwitcher");
     }
-    var pizzas = document.querySelectorAll(".randomPizzaContainer");
+    var pizzas = document.getElementsByClassName(".randomPizzaContainer");
 
     // Optimization: Removed all the unnecessary calculation to calculate the
     // width of the pizza and set width in the % based on the pizza size.
@@ -498,14 +498,18 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
   // Optimization: Calculated scrollTop outside the loop as it is getting single
   // value and calculated sin value based on reference example
-  var sine = Math.sin((document.body.scrollTop / 1250));
+  var scroll = document.body.scrollTop / 1250;
+  var phases = [];
+  for (var i = 0; i < 5; i++) {
+      phases.push( Math.sin(scroll + i);
+  }
   // Optimization: Replace querySelectorAll with getElementsByClassName
   var items = document.getElementsByClassName('mover');
 
   //Replaced items.length with the number of pizzas generated
   for (var i = 0; i < no_of_pizzas; i++) {
     // Calculated phase amount based on the reference example.
-    var phase = Math.sin(sine + (i % 5));
+    var phase = phases[i % 5];
     // Optimization: Added two transform property in style.css for optimizing
     // updating layer.
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
