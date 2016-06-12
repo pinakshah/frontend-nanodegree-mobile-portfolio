@@ -501,7 +501,7 @@ function updatePositions() {
   var scroll = document.body.scrollTop / 1250;
   var phases = [];
   for (var i = 0; i < 5; i++) {
-      phases.push( Math.sin(scroll + i);
+      phases.push(Math.sin(scroll + i));
   }
   // Optimization: Replace querySelectorAll with getElementsByClassName
   var items = document.getElementsByClassName('mover');
